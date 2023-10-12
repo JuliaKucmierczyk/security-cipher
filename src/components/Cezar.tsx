@@ -1,10 +1,4 @@
-import React from "react";
-
 const Cezar = () => {
-  // Create function that will cipher the text
-  // Create input where you can cipher the text
-  // Create button that shows the result
-  // Create div where you can show the result
   const cipher = document.querySelector("#cipher-text");
   const num = document.querySelector("#cipher-num");
   const btn = document.querySelector(".btn");
@@ -55,11 +49,11 @@ const Cezar = () => {
     <section className="container">
       <div className="input-container">
         <input type="text" placeholder="Type your text" id="cipher-text" />
+
         <input type="number" placeholder="Type your number" id="cipher-num" />
       </div>
-      <button className="btn">Show result</button>
+      <button className="btn tomato">Zaszyfruj</button>
       <div className="result-container">
-        <h2>Result:</h2>
         <p>Result will be shown here</p>
       </div>
     </section>
