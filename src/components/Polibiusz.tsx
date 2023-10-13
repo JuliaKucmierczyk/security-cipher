@@ -1,8 +1,11 @@
 const Polibiusz = () => {
   // I want to create a Polybius Cipher that will encrypt and decrypt the text with all the inputs as table
 
+  //   const polibiusz = () => {
+
   return (
     <section className="container polibiusz">
+      <input type="text" placeholder="Type your text" id="polibiusz-text" />
       <table className="polibiusz-table">
         <tr>
           <th></th>
@@ -135,6 +138,13 @@ const Polibiusz = () => {
           </td>
         </tr>
       </table>
+      <div>
+        <button className="btn blue">Zaszyfruj</button>
+        <button className="btn blue">Enkryptuj</button>
+      </div>
+      <div className="result-container">
+        <p>Result will be shown here</p>
+      </div>
     </section>
   );
 };

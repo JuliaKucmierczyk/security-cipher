@@ -36,7 +36,7 @@ const Cezar = () => {
   };
 
   // create a function that will handle the click event
-  const handleClick = () => {
+  const handleClickEncrypt = () => {
     const textInput = document.querySelector(
       "#cipher-text"
     ) as HTMLInputElement;
@@ -47,15 +47,32 @@ const Cezar = () => {
     showResult(result);
   };
 
+  const handleClickDecrypt = () => {
+    const textInput = document.querySelector(
+      "#cipher-text"
+    ) as HTMLInputElement;
+    const numInput = document.querySelector("#cipher-num") as HTMLInputElement;
+    const text = textInput.value;
+    const num = numInput.value;
+    const result = decrypt(text, Number(num));
+    showResult(result);
+  };
+
   return (
     <section className="container cezar" hidden={true}>
       <div className="input-container">
         <input type="text" placeholder="Type your text" id="cipher-text" />
         <input type="number" placeholder="Type your number" id="cipher-num" />
       </div>
-      <button className="btn tomato" onClick={handleClick}>
-        Zaszyfruj
-      </button>
+      <div>
+        <button className="btn tomato" onClick={handleClickEncrypt}>
+          Zaszyfruj
+        </button>
+        <button className="btn tomato" onClick={handleClickDecrypt}>
+          Enkryptuj
+        </button>
+      </div>
+
       <div className="result-container">
         <p>Result will be shown here</p>
       </div>
