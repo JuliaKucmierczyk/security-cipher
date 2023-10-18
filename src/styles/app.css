@@ -63,3 +63,13 @@ body {
 .polibiusz-input {
   width: 1rem;
 }
+
+.liczby {
+  padding: 1rem;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.result-container {
+  padding: 2rem;
+}

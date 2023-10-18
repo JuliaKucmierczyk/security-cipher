@@ -1,151 +1,110 @@
-const Polibiusz = () => {
-  // I want to create a Polybius Cipher that will encrypt and decrypt the text with all the inputs as table
+import React, { useState } from "react";
 
-  //   const polibiusz = () => {
+const Polibiusz: React.FC = () => {
+  const [grid, setGrid] = useState<string[][]>(
+    Array(5)
+      .fill([])
+      .map(() => Array(7).fill(""))
+  );
+  const [inputText, setInputText] = useState<string>("");
+  const [outputText, setOutputText] = useState<string>("");
+  const [decryptInput, setDecryptInput] = useState<string>("");
+  const [decryptOutput, setDecryptOutput] = useState<string>("");
+
+  const handleInputChange = (row: number, col: number, value: string) => {
+    const newGrid = [...grid];
+    newGrid[row][col] = value;
+    setGrid(newGrid);
+  };
+
+  const areAllInputsFilled = grid.every((row) => row.every((cell) => cell));
+
+  const hasUniqueValues = (() => {
+    const flatValues = grid.flat();
+    const uniqueValues = [...new Set(flatValues)];
+    return flatValues.length === uniqueValues.length;
+  })();
+
+  const encrypt = () => {
+    if (!areAllInputsFilled) {
+      alert("Wypełnij wszystkie pola!");
+      return;
+    }
+    if (!hasUniqueValues) {
+      alert("Wartości w inputach nie mogą się powtarzać!");
+      return;
+    }
+
+    const map: Record<string, string> = {};
+    grid.forEach((row, i) => {
+      row.forEach((char, j) => {
+        if (char) {
+          map[char] = `${i + 1}${j + 1}`;
+        }
+      });
+    });
+
+    const encrypted = inputText
+      .split("")
+      .map((char) => map[char] || char)
+      .join("");
+    setOutputText(encrypted);
+  };
+
+  const decrypt = () => {
+    const reverseMap: Record<string, string> = {};
+    grid.forEach((row, i) => {
+      row.forEach((char, j) => {
+        if (char) {
+          reverseMap[`${i + 1}${j + 1}`] = char;
+        }
+      });
+    });
+    const segments = decryptInput.match(/\d{2}/g) || [];
+
+    const decrypted = segments.map((num) => reverseMap[num] || num).join("");
+    setDecryptOutput(decrypted);
+  };
 
   return (
-    <section className="container polibiusz">
-      <input type="text" placeholder="Type your text" id="polibiusz-text" />
-      <table className="polibiusz-table">
-        <tr>
-          <th></th>
-          <th>1</th>
-          <th>2</th>
-          <th>3</th>
-          <th>4</th>
-          <th>5</th>
-          <th>6</th>
-          <th>7</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-          <td>
-            <input type="text" className="polibiusz-input" />
-          </td>
-        </tr>
-      </table>
-      <div>
-        <button className="btn blue">Zaszyfruj</button>
-        <button className="btn blue">Enkryptuj</button>
-      </div>
+    <div className="container">
+      {grid.map((row, i) => (
+        <div key={i}>
+          <span className="liczby">{i + 1}</span>
+          {row.map((_, j) => (
+            <input
+              className="polibiusz-input"
+              key={j}
+              maxLength={1}
+              value={grid[i][j]}
+              onChange={(e) => handleInputChange(i, j, e.target.value)}
+            />
+          ))}
+        </div>
+      ))}
+
       <div className="result-container">
-        <p>Result will be shown here</p>
+        <input
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="Type your text"
+        />
+        <button className="btn blue" onClick={encrypt}>
+          Zaszyfruj
+        </button>
+        <div>{outputText}</div>
+
+        <input
+          value={decryptInput}
+          onChange={(e) => setDecryptInput(e.target.value)}
+          placeholder="Enter the numbers"
+        />
+        <button className="btn blue" onClick={decrypt}>
+          Dekryptuj
+        </button>
+        <div>{decryptOutput}</div>
       </div>
-    </section>
+    </div>
   );
 };
 
