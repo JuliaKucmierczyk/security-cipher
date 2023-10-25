@@ -102,7 +102,7 @@ const Polibiusz: React.FC = () => {
         <button className="btn blue" onClick={decrypt}>
           Dekryptuj
         </button>
-        <div>{decryptOutput}</div>
+        <div className="result">{decryptOutput}</div>
       </div>
     </div>
   );

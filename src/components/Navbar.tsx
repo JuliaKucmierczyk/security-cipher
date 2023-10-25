@@ -1,12 +1,11 @@
 import React from "react";
 import Cezar from "./Cezar";
 import Polibiusz from "./Polibiusz";
+import Homophonic from "./Homophonic";
 
 const Navbar = () => {
-  // if user clicks on a button, the state will change
   const [state, setState] = React.useState("");
 
-  // create a function that will handle the click event
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.value;
     setState(value);
@@ -15,7 +14,6 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar">
-        {/* Create three buttons that shows diffrent components */}
         <button
           className="nav-btn tomato"
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
@@ -33,14 +31,15 @@ const Navbar = () => {
         <button
           className="nav-btn"
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
-          value={""}
+          value={"Szyfr Homofoniczny"}
         >
-          Kolejny
+          Szyfr Homofoniczny
         </button>
       </nav>
       <section>
         {state === "Szyfr Cezara" && <Cezar />}
         {state === "Szyfr Polibiusza" && <Polibiusz />}
+        {state === "Szyfr Homofoniczny" && <Homophonic />}
       </section>
     </>
   );

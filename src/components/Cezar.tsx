@@ -69,12 +69,12 @@ const Cezar = () => {
           Zaszyfruj
         </button>
         <button className="btn tomato" onClick={handleClickDecrypt}>
-          Enkryptuj
+          Odszyfruj
         </button>
       </div>
 
-      <div className="result-container">
-        <p>Result will be shown here</p>
+      <div className="result">
+        <p></p>
       </div>
     </section>
   );
