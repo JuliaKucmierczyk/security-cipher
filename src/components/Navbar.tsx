@@ -44,7 +44,7 @@ const Navbar = () => {
           Szyfr Trithemiusa
         </button>
       </nav>
-      <section>
+      <section className="home">
         {state === "Szyfr Cezara" && <Cezar />}
         {state === "Szyfr Polibiusza" && <Polibiusz />}
         {state === "Szyfr Homofoniczny" && <Homophonic />}
