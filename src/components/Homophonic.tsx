@@ -85,7 +85,11 @@ const Homophonic = () => {
 
   return (
     <section className="container">
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Wprowadź tekst"
+      />
       <div>
         <button className="btn" onClick={handleEncrypt}>
           Zaszyfruj

@@ -87,7 +87,7 @@ const Polibiusz: React.FC = () => {
         <input
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Type your text"
+          placeholder="Wprowadź tekst"
         />
         <button className="btn blue" onClick={encrypt}>
           Zaszyfruj
@@ -97,7 +97,7 @@ const Polibiusz: React.FC = () => {
         <input
           value={decryptInput}
           onChange={(e) => setDecryptInput(e.target.value)}
-          placeholder="Enter the numbers"
+          placeholder="Zaszyfrowany tekst"
         />
         <button className="btn blue" onClick={decrypt}>
           Odszyfruj

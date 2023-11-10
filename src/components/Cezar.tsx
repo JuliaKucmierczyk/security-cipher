@@ -76,8 +76,8 @@ const Cezar = () => {
   return (
     <section className="container cezar" hidden={true}>
       <div className="input-container">
-        <input type="text" placeholder="Type your text" id="cipher-text" />
-        <input type="number" placeholder="Type your number" id="cipher-num" />
+        <input type="text" placeholder="Wprowadź tekst" id="cipher-text" />
+        <input type="number" placeholder="Numer podstawienia" id="cipher-num" />
       </div>
       <div>
         <button className="btn tomato" onClick={handleClickEncrypt}>
