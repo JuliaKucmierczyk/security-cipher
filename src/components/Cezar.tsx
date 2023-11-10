@@ -1,29 +1,44 @@
 const Cezar = () => {
   // create a function that will encrypt the text
   const encrypt = (text: string, num: number) => {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const alphabet = "aąbcćdeęfghijklłmnńoóprsśtuwxyzźż";
     const alphabetArray = alphabet.split("");
     const textArray = text.split("");
     let result = "";
+
     textArray.forEach((letter) => {
-      const index = alphabetArray.indexOf(letter);
-      const newIndex = index + num;
+      if (!alphabet.includes(letter)) {
+        result += letter;
+        return;
+      }
+      let index = alphabetArray.indexOf(letter);
+      let newIndex = (index + num) % alphabetArray.length;
+      // If newIndex is negative, make it wrap around the alphabet
+      if (newIndex < 0) newIndex += alphabetArray.length;
       result += alphabetArray[newIndex];
     });
+
     return result;
   };
 
   // create a function that will decrypt the text
   const decrypt = (text: string, num: number) => {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const alphabet = "aąbcćdeęfghijklłmnńoóprsśtuwxyzźż";
     const alphabetArray = alphabet.split("");
     const textArray = text.split("");
     let result = "";
+
     textArray.forEach((letter) => {
-      const index = alphabetArray.indexOf(letter);
-      const newIndex = index - num;
+      if (!alphabet.includes(letter)) {
+        result += letter;
+        return;
+      }
+      let index = alphabetArray.indexOf(letter);
+      let newIndex =
+        (index - num + alphabetArray.length) % alphabetArray.length;
       result += alphabetArray[newIndex];
     });
+
     return result;
   };
 
@@ -73,7 +88,7 @@ const Cezar = () => {
         </button>
       </div>
 
-      <div className="result">
+      <div className="result result-container">
         <p></p>
       </div>
     </section>

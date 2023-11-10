@@ -2,6 +2,7 @@ import React from "react";
 import Cezar from "./Cezar";
 import Polibiusz from "./Polibiusz";
 import Homophonic from "./Homophonic";
+import Trithemius from "./Trithemius";
 
 const Navbar = () => {
   const [state, setState] = React.useState("");
@@ -35,11 +36,19 @@ const Navbar = () => {
         >
           Szyfr Homofoniczny
         </button>
+        <button
+          className="nav-btn green"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
+          value={"Szyfr Trithemiusa"}
+        >
+          Szyfr Trithemiusa
+        </button>
       </nav>
       <section>
         {state === "Szyfr Cezara" && <Cezar />}
         {state === "Szyfr Polibiusza" && <Polibiusz />}
         {state === "Szyfr Homofoniczny" && <Homophonic />}
+        {state === "Szyfr Trithemiusa" && <Trithemius />}
       </section>
     </>
   );

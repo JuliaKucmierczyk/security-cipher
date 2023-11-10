@@ -39,6 +39,18 @@ type HomophonicKey =
   | "ż"
   | " ";
 
+const buildReverseMapping = (homophones: Record<string, string[]>) => {
+  const reverseMap: Record<string, string> = {};
+  for (const [letter, codes] of Object.entries(homophones)) {
+    codes.forEach((code) => {
+      reverseMap[code] = letter;
+    });
+  }
+  return reverseMap;
+};
+
+const reverseHomophones = buildReverseMapping(homophones);
+
 const Homophonic = () => {
   const [input, setInput] = useState<string>("");
   const [result, setResult] = useState<string>("");
@@ -61,12 +73,25 @@ const Homophonic = () => {
     setResult(encryptedText);
   };
 
+  const decrypt = (text: string) => {
+    const regex = new RegExp(Object.keys(reverseHomophones).join("|"), "g");
+    return text.replace(regex, (matched) => reverseHomophones[matched]);
+  };
+
+  const handleDecrypt = () => {
+    const decryptedText = decrypt(input);
+    setResult(decryptedText);
+  };
+
   return (
     <section className="container">
+      <input value={input} onChange={(e) => setInput(e.target.value)} />
       <div>
-        <input value={input} onChange={(e) => setInput(e.target.value)} />
         <button className="btn" onClick={handleEncrypt}>
           Zaszyfruj
+        </button>
+        <button className="btn" onClick={handleDecrypt}>
+          Odszyfruj
         </button>
       </div>
       <div className="result">{result}</div>

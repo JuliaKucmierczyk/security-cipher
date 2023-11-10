@@ -100,9 +100,9 @@ const Polibiusz: React.FC = () => {
           placeholder="Enter the numbers"
         />
         <button className="btn blue" onClick={decrypt}>
-          Dekryptuj
+          Odszyfruj
         </button>
-        <div className="result">{decryptOutput}</div>
+        <div>{decryptOutput}</div>
       </div>
     </div>
   );
